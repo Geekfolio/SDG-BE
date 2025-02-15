@@ -1,4 +1,4 @@
-from db import execute_query, fetch_all, fetch_one
+from db import execute_query, fetch_one
 from robyn import Request
 
 
