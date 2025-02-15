@@ -62,6 +62,7 @@ build/
 
 # Local configuration files
 *.local
+.envrc
 *.env
 .env.local
 .env.*.local
