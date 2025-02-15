@@ -1,0 +1,11 @@
+INSERT INTO permissions(permission, needed_authority) VALUES ('HOSTED-EVENT-CREATION', 2);
+INSERT INTO permissions(permission, needed_authority) VALUES ('EXTERNAL-EVENT-CREATION', 2);
+INSERT INTO permissions(permission, needed_authority) VALUES ('LIVE COLLEGE ACTIVITY', 2);
+INSERT INTO permissions(permission, needed_authority) VALUES ('STUDENT PROFILE VIEWING', 2);
+INSERT INTO permissions(permission, needed_authority) VALUES ('FACULTY PROFILE VIEWING', 3);
+INSERT INTO permissions(permission, needed_authority) VALUES ('TOP STUDENTS PER YEAR', 2);
+INSERT INTO permissions(permission, needed_authority) VALUES ('ADDING POLLS', 2);
+INSERT INTO permissions(permission, needed_authority) VALUES ('REVOKE HOD', 4);
+INSERT INTO permissions(permission, needed_authority) VALUES ('ACCEPT HOD', 4);
+INSERT INTO permissions(permission, needed_authority) VALUES ('ACCEPT STAFF', 3);
+INSERT INTO permissions(permission, needed_authority) VALUES ('REVOKE STAFF', 3);
