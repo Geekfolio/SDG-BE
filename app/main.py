@@ -1,7 +1,8 @@
-from robyn import Robyn
+from robyn import ALLOW_CORS, Robyn
 from routes import user_router
 
 app = Robyn(__file__)
+ALLOW_CORS(app, "*")
 
 # registering routes
 app.include_router(user_router)
