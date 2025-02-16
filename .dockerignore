@@ -57,6 +57,7 @@ dmypy.json
 # Local configuration files
 *.local
 *.env
+.envrc
 .env.local
 .env.*.local
 
