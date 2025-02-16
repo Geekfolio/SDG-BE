@@ -30,3 +30,7 @@ async def create_event_route(request):
 @events_router.get("/all")
 async def get_all_events_route(request):
     return await event_controllers.fetch_all_events(request)
+
+@events_router.post("/register")
+async def register_event_route(request):
+    return await event_controllers.register_event(request)

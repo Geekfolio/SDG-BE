@@ -2,6 +2,7 @@ import json
 
 from db import execute_many, execute_query, fetch_all, fetch_one
 from robyn import Request, Response
+from utils import send_email
 
 
 async def create_event(request: Request):
@@ -16,6 +17,7 @@ async def create_event(request: Request):
         departments, years = payload["departments"], payload["years"]
         await execute_many("INSERT INTO event_departments (event_id, department) VALUES (?, ?)", [(last_id, dep) for dep in departments])
         await execute_many("INSERT INTO event_years (event_id, year) VALUES (?, ?)", [(last_id, year) for year in years])
+        await send_email()
         return "potachu db la"
     else:
         return "authority not enough"
@@ -25,3 +27,10 @@ async def create_event(request: Request):
 async def fetch_all_events(request: Request):
     all_events = await fetch_all("SELECT * FROM events")
     return all_events
+
+async def register_event(request: Request):
+    payload = json.loads(request.body)
+    email, team_name, team_members = payload["email"], payload["team_name"], payload["team_members"]
+
+    query = await fetch_one("SELECT * FROM users WHERE email = ?", [email])
+    return query

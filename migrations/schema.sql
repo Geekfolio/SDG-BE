@@ -7,7 +7,6 @@ INSERT INTO enum_department (department) VALUES ('AIML');
 INSERT INTO enum_department (department) VALUES ('ECE');
 INSERT INTO enum_department (department) VALUES ('EEE');
 INSERT INTO enum_department (department) VALUES ('CSE');
-INSERT INTO enum_department (department) VALUES ('CYBER');
 INSERT INTO enum_department (department) VALUES ('IT');
 INSERT INTO enum_department (department) VALUES ('CYBER');
 INSERT INTO enum_department (department) VALUES ('MECH');
