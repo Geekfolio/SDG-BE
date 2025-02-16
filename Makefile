@@ -8,7 +8,7 @@ endif
 dev:
 	$(SET_ENV) python -m robyn app/main.py --dev
 
-init db:
+init-db:
 	python migrations/bootstrap.py
 
 start:

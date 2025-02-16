@@ -8,7 +8,7 @@ COPY . .
 
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
-RUN make init db
+RUN make init-db
 
 EXPOSE 8080
 
