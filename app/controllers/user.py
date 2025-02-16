@@ -1,4 +1,4 @@
-from db import execute_query, fetch_one
+from db import execute_query, fetch_one, fetch_all
 from robyn import Request
 
 
@@ -11,3 +11,13 @@ async def create_user(request: Request):
 async def fetch_user(request: Request):
     user = await fetch_one("SELECT * FROM users")
     return {"data": user }
+
+async def fetch_all_users(request: Request):
+    users = await fetch_all("SELECT * FROM users")
+    return {"data": users}
+
+async def login(request: Request):
+    payload = request.json()
+    email, password = payload["email"], payload["password"]
+    user = await fetch_one("SELECT * FROM users WHERE email = ? AND reg = ?", (email, password))
+    return {"message":"login successful", "data": user}

@@ -10,3 +10,11 @@ async def create_user_route(request):
 @user_router.get("/fetch")
 async def fetch_user_route(request):
     return await user_controllers.fetch_user(request)
+
+@user_router.get("/all")
+async def fetch_all_users_route(request):
+    return await user_controllers.fetch_all_users(request)
+
+@user_router.post("/login")
+async def login_route(request):
+    return await user_controllers.login(request)
