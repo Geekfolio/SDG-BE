@@ -30,7 +30,7 @@ async def create_event(request: Request):
         departments, years = payload["departments"], payload["years"]
         await execute_many("INSERT INTO event_departments (event_id, department) VALUES (?, ?)", [(last_id, dep) for dep in departments])
         await execute_many("INSERT INTO event_years (event_id, year) VALUES (?, ?)", [(last_id, year) for year in years])
-        await send_email(name, start, description)        
+        await send_email(name, start, description)
         return {"message": "Event created successfully"}
     else:
         return {"message": "Authority not enough"}
@@ -48,10 +48,18 @@ async def register_event(request: Request):
     team_members = payload["team_members"]
     event_name = payload["event_name"]
     event_date = payload["event_date"]
+    event_id = payload["event_id"]
 
+    await execute_query("INSERT INTO events_registered(event_id, email_id) VALUES(?, ?)", (event_id, email))
     user = await fetch_one("SELECT * FROM users WHERE email = ?", [email])
     if user:
         send_registration_email(email, event_name, event_date, team_name, team_members)
         return {"message": "Registration successful"}
     else:
         return {"message": "User not found"}, {}, 404
+
+def give_feedback():
+	pass
+
+def get_ended_events():
+	pass

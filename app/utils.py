@@ -1,5 +1,6 @@
 import os
 import smtplib
+import sys
 
 from db import fetch_all
 from dotenv import load_dotenv
@@ -8,9 +9,12 @@ load_dotenv()
 
 EMAIL = os.getenv("EMAIL")
 PASSWORD = os.getenv("PASSWORD")
+if (not EMAIL or not PASSWORD):
+	print("No email/password")
+	sys.exit(1);
 
 s = smtplib.SMTP("smtp.gmail.com", 587)
-s.ehlo() 
+s.ehlo()
 s.starttls()
 
 s.login(EMAIL, PASSWORD)

@@ -35,7 +35,7 @@ INSERT INTO enum_event_type (type) VALUES('Hackathon');
 INSERT INTO enum_event_type (type) VALUES('Coding Challenge');
 INSERT INTO enum_event_type (type) VALUES('Workshop');
 
--- User schema 
+-- User schema
 
 CREATE TABLE IF NOT EXISTS users (
   email TEXT PRIMARY KEY,
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS permissions(
   needed_authority INTEGER CHECK(needed_authority IN (1,2,3,4))
 );
 
--- Events Schema 
+-- Events Schema
 CREATE TABLE events(
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT,
@@ -84,4 +84,20 @@ CREATE TABLE event_years(
   year INTEGER,
   FOREIGN KEY(event_id) REFERENCES events(id),
   FOREIGN KEY(year) REFERENCES enum_year(year)
+);
+
+CREATE TABLE IF NOT EXISTS events_registered (
+	event_id INTEGER,
+	email_id TEXT,
+	FOREIGN KEY(event_id) REFERENCES events(id),
+	FOREIGN KEY(email_id) REFERENCES users(email)
+);
+
+CREATE TABLE IF NOT EXISTS feedback(
+	email_id TEXT,
+	event_id INTEGER,
+	rating INTEGER,
+	review TEXT,
+	FOREIGN KEY(event_id) REFERENCES events(id),
+	FOREIGN KEY(email_id) REFERENCES users(email)
 );
