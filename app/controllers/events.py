@@ -58,8 +58,16 @@ async def register_event(request: Request):
     else:
         return {"message": "User not found"}, {}, 404
 
-def give_feedback():
-	pass
+async def create_feedback(request: Request):
+	payload = json.loads(request.body)
+	event_id, email_id, rating, review = (payload["event_id"], payload["email_id"], payload["rating"], payload["review"])
 
-def get_ended_events():
-	pass
+	await execute_query("INSERT INTO feedback(email_id, event_id, rating, review) VALUES(?, ?, ?, ?)", (email_id, event_id, rating, review))
+	return {"message": "Feedback added"}
+
+async def get_registered_events(request: Request):
+    payload = request.query_params.to_dict()
+    email = payload["email"][0]
+
+    events = await fetch_all("SELECT er.event_id as id, e.name, e.email, e.description, e.event_type, e.team_size, e.start, e.end, e.participants, e.status, e.authority FROM events_registered AS er JOIN events AS e ON er.event_id = e.id WHERE er.email_id = ?", [email])
+    return events

@@ -34,3 +34,11 @@ async def get_all_events_route(request):
 @events_router.post("/register")
 async def register_event_route(request):
     return await event_controllers.register_event(request)
+
+@events_router.get("/get-registered")
+async def get_registered_events_route(request):
+    return await event_controllers.get_registered_events(request)
+
+@events_router.post("/feedback")
+async def create_feedback_route(request):
+    return await event_controllers.create_feedback(request)
